@@ -1,0 +1,46 @@
+import cv2
+import torch
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+
+# Load the YOLOv5 model
+model = torch.hub.load('ultralytics/yolov5', 'custom',
+                       path='C:/Users/weili/PycharmProjects/CTscan/yolov5/runs/train/exp8/weights/best.pt')
+
+# Define a dictionary to map items to ecosystems
+ecosystem_mapping = {
+    "Jumper Wire": "IoT",
+    "Resistor": "IoT",
+    "Transistor": "IoT",
+    "Ultrasonic Sensor": "IoT",
+    "Arduino Uno": "Arduino Ecosystem",
+    "Robot": "ROS Ecosystem"
+}
+
+# Prompt user to select an image file
+Tk().withdraw()  # Hide the root Tkinter window
+file_path = askopenfilename(title="Select an image file", filetypes=[("Image files", "*.jpg *.jpeg *.png *.bmp")])
+
+if file_path:
+    # Load the image
+    image = cv2.imread(file_path)
+
+    # Perform detection
+    results = model(image)
+
+    # Process results
+    for *box, conf, cls in results.xyxy[0]:  # x1, y1, x2, y2, confidence, class
+        label = results.names[int(cls)]
+        ecosystem = ecosystem_mapping.get(label, "Unknown")
+
+        # Draw bounding box and label on the image
+        cv2.rectangle(image, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), (0, 255, 0), 2)
+        cv2.putText(image, f"{label} ({ecosystem})", (int(box[0]), int(box[1]) - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+    # Display the image with results
+    cv2.imshow("Detection Results", image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+else:
+    print("No file selected!")

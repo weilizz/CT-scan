@@ -1,0 +1,6 @@
+train: C:/Users/weili/Downloads/datasets.combined/images  # Path to training images
+val: C:/Users/weili/Downloads/datasets.combined/images    # Path to validation images
+train_labels: C:/Users/weili/Downloads/datasets.combined/labels  # Path to training labels
+val_labels: C:/Users/weili/Downloads/datasets.combined/labels  # Path to validation labels
+nc: 6  # Number of classes
+names: ["Jumper Wire", "Resistor", "Transistor", "Ultrasonic Sensor", "Arduino Uno", "Robot"]  # Class names

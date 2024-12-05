@@ -1,0 +1,5 @@
+train: C:/Users/Hp/Downloads/Arduino_Ros/train/images
+val: C:/Users/Hp/Downloads/Arduino_Ros/valid/images
+
+nc: 4  # Number of classes
+names: ['Arduino_Uno', 'Arduino_Nano', 'Raspberry_Pi', 'Motorwheel']

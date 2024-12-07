@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Inventory Dashboard</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #001f3f; /* Dark blue background */
+            color: white; /* White text */
+        }
+
+        /* Styling for categories */
+        .category {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #2196F3; /* Initial border color */
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out; /* Smooth transition for border */
+        }
+
+        /* Interactive border effect on hover */
+        .category:hover {
+            border-color: #4CAF50; /* Change border color on hover */
+            box-shadow: 0 0 10px #4CAF50; /* Add glowing effect */
+        }
+
+        /* Heading styles */
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2196F3;
+        }
+
+        /* List styling */
+        ul {
+            list-style-type: none; /* Remove default bullets */
+            padding: 0;
+        }
+
+        li {
+            padding: 5px;
+            border-bottom: 1px solid #4CAF50; /* Add a bottom border */
+        }
+
+        li:last-child {
+            border-bottom: none; /* Remove the last item's border */
+        }
+
+        /* Paragraph styling */
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Inventory Dashboard</h1>
+    <div id="dashboard">
+        <!-- Loop through the ecosystems and display items -->
+        {% for ecosystem, items in inventory.items() %}
+        <div class="category">
+            <h2>{{ ecosystem }}</h2>
+            <ul>
+                {% for item, count in items.items() %}
+                <li>{{ item }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+
+        <!-- IoT Ecosystem with items set to 0 -->
+        <div class="category">
+            <h2>IoT Ecosystem</h2>
+            <ul>
+                <li>Capacitor: 0</li>
+                <li>Jumper Wires: 0</li>
+                <li>Resistor: 0</li>
+                <li>Transistor: 0</li>
+                <li>Ultrasonic Sensor: 0</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

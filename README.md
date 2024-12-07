@@ -5,3 +5,6 @@ Each ecosystems have atleast 2 items.
 Arduino - Arduino Uno, Arduino Mini
 ROS - robots, robotic wheels
 IOT - ultrasonic sensor, resistor, capacitor, jumper wire
+
+
+It is also connected to webpage via real time data to provide user-friendly interface.
